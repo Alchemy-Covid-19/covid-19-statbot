@@ -10,7 +10,8 @@
     "start:watch": "nodemon server.js"
   },
   "jest": {
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "testTimeout": 10000
   },
   "keywords": [],
   "author": "",
@@ -29,6 +30,7 @@
     "express": "^4.17.1",
     "mongoose": "^5.9.7",
     "puppeteer": "^2.1.1",
-    "superagent": "^5.2.2"
+    "superagent": "^5.2.2",
+    "twilio": "^3.42.1"
   }
 }

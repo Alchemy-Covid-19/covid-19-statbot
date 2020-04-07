@@ -1,8 +1,8 @@
 require('dotenv').config();
-require('../utils/connect')();
+require('./lib/utils/connect')();
 const mongoose = require('mongoose');
 
-const scrape = require('./stats-scraper.js');
+const scrape = require('./lib/scrapers/stats-scraper.js');
 
 scrape()
   .then(console.log)
