@@ -5,7 +5,7 @@ const connect = require('../lib/utils/connect');
 const scraper = require('../lib/scrapers/stats-scraper');
 
 
-describe('national scraper routes', () => {
+describe('scraper routes', () => {
   beforeAll(() => {
     connect();
   });
@@ -17,7 +17,7 @@ describe('national scraper routes', () => {
   afterAll(() => {
     return mongoose.connection.close();
   });
-  it('creates a national scrape', () => {
+  it('creates an object from scraped data', () => {
     return scraper()
       .then(res => {
         console.log(res[0]);
@@ -25,14 +25,13 @@ describe('national scraper routes', () => {
           _id: expect.any(Object),
           totalCases: expect.any(Number),
           totalDeaths: expect.any(Number),
-          newDeaths: expect.any(String),
+          newDeaths: expect.any(Number),
           totalRecovered: expect.any(Number),
-          newRecovered: expect.any(String),
+          newRecovered: expect.any(Number),
           fatalityRate: expect.any(String),
           location: expect.any(String),
-          newCases: expect.any(String),
-          createdAt: expect.any(Date),
-          updatedAt: expect.any(Date),
+          newCases: expect.any(Number),
+          date: expect.any(String),
           __v: 0
         });
       });
