@@ -1,30 +1,39 @@
-const request = require('supertest');
-const app = require('../lib/app');
+require('dotenv').config();
+const mongoose = require('mongoose');
+
+const connect = require('../lib/utils/connect');
+const scraper = require('../lib/scrapers/stats-scraper');
 
 
 describe('national scraper routes', () => {
+  beforeAll(() => {
+    connect();
+  });
+
+  beforeEach(() => {
+    return mongoose.connection.dropDatabase();
+  });
+
+  afterAll(() => {
+    return mongoose.connection.close();
+  });
   it('creates a national scrape', () => {
-    return request(app)
-      .post('/api/v1/nationalstats')
-      .send({
-        totalNationalCases: 1,
-        todayNewNationalCases: 2,
-        totalNationalDeaths: 3,
-        todayNewNationalDeaths: 4,
-        totalNationalRecovered: 5,
-        todayNewNationalRecovered: 6,
-        todayNewNationalFatalityRate: 7
-      })
+    return scraper()
       .then(res => {
-        expect(res.body).toEqual({
-          _id: expect.any(String),
-          totalNationalCases: expect.any(Number),
-          todayNewNationalCases: expect.any(Number),
-          totalNationalDeaths: expect.any(Number),
-          todayNewNationalDeaths: expect.any(Number),
-          totalNationalRecovered: expect.any(Number),
-          todayNewNationalRecovered: expect.any(Number),
-          todayNewNationalFatalityRate: expect.any(Number)
+        console.log(res[0]);
+        expect(res[0].toJSON()).toEqual({
+          _id: expect.any(Object),
+          totalCases: expect.any(Number),
+          totalDeaths: expect.any(Number),
+          newDeaths: expect.any(String),
+          totalRecovered: expect.any(Number),
+          newRecovered: expect.any(String),
+          fatalityRate: expect.any(String),
+          location: expect.any(String),
+          newCases: expect.any(String),
+          createdAt: expect.any(Date),
+          updatedAt: expect.any(Date),
+          __v: 0
         });
       });
   });
