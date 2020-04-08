@@ -10,11 +10,7 @@ describe('stats routes', () => {
   beforeAll(() => {
     connect();
   });
-
-  // beforeEach(() => {
-  //   return mongoose.connection.dropDatabase();
-  // });
-
+  
   afterAll(() => {
     return mongoose.connection.close();
   });
