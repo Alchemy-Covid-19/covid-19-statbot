@@ -25,16 +25,9 @@ describe('stats routes', () => {
       .then(res => {
         expect(res.body[0]).toEqual({
           _id: expect.any(String),
-          totalCases: expect.any(Number),
-          totalDeaths: expect.any(Number),
           newDeaths: expect.any(Number),
-          totalRecovered: expect.any(Number),
           newRecovered: expect.any(Number),
-          fatalityRate: expect.any(String),
-          location: expect.any(String),
-          newCases: expect.any(Number),
-          date: expect.any(String),
-          __v: 0
+          newCases: expect.any(Number)
         });
       });
   });
