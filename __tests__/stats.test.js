@@ -22,6 +22,7 @@ describe('stats routes', () => {
       .then(res => {
         expect(res.body[0]).toEqual({
           _id: expect.any(String),
+          date: expect.any(String),
           newDeaths: expect.any(Number),
           newRecovered: expect.any(Number),
           newCases: expect.any(Number)
@@ -41,6 +42,7 @@ describe('stats routes', () => {
       .then(res => {
         expect(res.body[0]).toEqual({
           _id: expect.any(String),
+          date: expect.any(String),
           newDeaths: expect.any(Number),
           newRecovered: expect.any(Number),
           newCases: expect.any(Number)

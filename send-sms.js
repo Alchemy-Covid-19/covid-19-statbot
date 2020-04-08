@@ -17,8 +17,8 @@ getUsers()
         .then(res => {
           return client.messages
             .create({
-              body: `New Cases: ${res.body[0].newCases} \n New Deaths: ${res.body[0].newDeaths}
-              \n New Recovered: ${res.body[0].newRecovered}`,
+              body: `
+              Daily stats for ${user.location} as of 4:30 p.m. on ${res.body[0].date}\nNew Cases: ${res.body[0].newCases}\nNew Deaths: ${res.body[0].newDeaths}\nNew Recovered: ${res.body[0].newRecovered}`,
               from: '+13094080627',
               to: `+1${user.phoneNumber}`
             });
