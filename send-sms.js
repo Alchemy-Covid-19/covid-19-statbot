@@ -5,7 +5,7 @@ const authToken = process.env.TWILIO_TOKEN;
 const client = require('twilio')(accountSid, authToken);
 const request = require('superagent');
 
-
+// change to heroku url
 const getStats = () => request.get('http://localhost:7890/api/v1/stats');
 
 getStats()
