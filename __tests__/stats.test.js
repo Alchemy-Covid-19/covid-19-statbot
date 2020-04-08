@@ -6,14 +6,14 @@ const connect = require('../lib/utils/connect');
 const mongoose = require('mongoose');
 const Stats = require('../lib/models/Stats');
 
-describe('recipe routes', () => {
+describe('stats routes', () => {
   beforeAll(() => {
     connect();
   });
 
-  beforeEach(() => {
-    return mongoose.connection.dropDatabase();
-  });
+  // beforeEach(() => {
+  //   return mongoose.connection.dropDatabase();
+  // });
 
   afterAll(() => {
     return mongoose.connection.close();
@@ -23,7 +23,7 @@ describe('recipe routes', () => {
     return request(app)
       .get('/api/v1/stats')
       .then(res => {
-        expect(res.body).toEqual({
+        expect(res.body[0]).toEqual({
           _id: expect.any(String),
           totalCases: expect.any(Number),
           totalDeaths: expect.any(Number),
