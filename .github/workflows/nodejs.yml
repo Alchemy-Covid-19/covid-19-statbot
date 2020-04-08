@@ -5,20 +5,20 @@ branches: [ master, dev ]
 pull_request:
 branches: [ master, dev ]
 jobs:
-build:
-runs-on: ubuntu-latest
-container: node:latest
-services:
-mongo:
-image: mongo
-steps:
-- uses: actions/checkout@v2
-- run: npm ci
-- run: npm test
-env:
-CI: true
-MONGODB_URI: mongodb://mongo:27017/testing-ci
-MONGODB_URI=mongodb://localhost:27017/covid-19-statbot
-#MONGODB_URI=mongodb://heroku_5nqc9b1z:rlfa1al6mojo5gcp55nmmbehg1@ds031903.mlab.com:31903/heroku_5nqc9b1z
-TWILIO_SID=AC94f073f3ff87c6c81784c40a1933f2a9
-TWILIO_TOKEN=4d0f4531b30970fc3ed445b6dcffae74
+  build:
+    runs-on: ubuntu-latest
+    container: node:latest
+    services:
+      mongo:
+        image: mongo
+    steps:
+    - uses: actions/checkout@v2
+    - run: npm ci
+    - run: npm test
+      env:
+        CI: true
+        MONGODB_URI: mongodb://mongo:27017/testing-ci
+        MONGODB_URI: mongodb://localhost:27017/covid-19-statbot
+        #MONGODB_URI: mongodb://heroku_5nqc9b1z:rlfa1al6mojo5gcp55nmmbehg1@ds031903.mlab.com:31903/heroku_5nqc9b1z
+        TWILIO_SID: AC94f073f3ff87c6c81784c40a1933f2a9
+        TWILIO_TOKEN: 4d0f4531b30970fc3ed445b6dcffae74
