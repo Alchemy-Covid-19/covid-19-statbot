@@ -6,14 +6,14 @@ const client = require('twilio')(accountSid, authToken);
 const request = require('superagent');
 
 // change to heroku url
-const getStats = () => request.get('http://localhost:7890/api/v1/stats');
+const getStats = (location) => request.get(`http://localhost:7890/api/v1/stats/${location}`);
 
 const getUsers = () => request.get('http://localhost:7890/api/v1/users');
 
 getUsers()
   .then(res => {
     return res.body.forEach(user => {
-      getStats()
+      getStats(user.location)
         .then(res => {
           return client.messages
             .create({
