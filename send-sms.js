@@ -14,7 +14,7 @@ getStats()
       .create({
         body: `New Cases: ${res.body[0].newCases} \n New Deaths: ${res.body[0].newDeaths}
         \n New Recovered: ${res.body[0].newRecovered}`,
-        from: '+12017338240',
+        from: '+13094080627',
         to: '+17274575903'
       });
   })
