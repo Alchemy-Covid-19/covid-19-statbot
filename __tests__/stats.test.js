@@ -5,6 +5,7 @@ const app = require('../lib/app');
 const connect = require('../lib/utils/connect');
 const mongoose = require('mongoose');
 const Stats = require('../lib/models/Stats');
+const getStatsByLocation = require('../db/data-helpers');
 
 describe('stats routes', () => {
   beforeAll(() => {
@@ -31,4 +32,19 @@ describe('stats routes', () => {
         });
       });
   });
+
+  it('gets daily stats for the user requested location', async() =>{
+    const data = await getStatsByLocation();
+    return request(app)
+      .get(`/api/v1/stats/${data}`)
+      .then(res => {
+        expect(res.body).toEqual({
+          _id: expect.any(String),
+          newDeaths: expect.any(Number),
+          newRecovered: expect.any(Number),
+          newCases: expect.any(Number)
+        });
+      });
+  });
+
 });

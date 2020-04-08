@@ -9,17 +9,16 @@ const express = require('express');
 const http = require('http');
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
 const bodyParser = require('body-parser');
+const getStatsByLocation = require('./db/data-helpers');
 
 const app = express();
-
-const getStats = () => request.get('http://localhost:7890/api/v1/stats');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.post('/', (req, res) => {
   const twiml = new MessagingResponse();
 
-  const messageContent = getStats()
+  const messageContent = getStatsByLocation(req.location)
     .then(res => {
       return client.messages
         .create({
