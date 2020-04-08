@@ -27,10 +27,10 @@ describe('scraper routes', () => {
           totalDeaths: expect.any(Number),
           newDeaths: expect.any(Number),
           totalRecovered: expect.any(Number),
-          newRecovered: expect.any(Number),
+          newRecovered: (expect.any(Number) || expect.toBeNull()),
           fatalityRate: expect.any(String),
           location: expect.any(String),
-          newCases: expect.any(Number),
+          newCases: (expect.any(Number) || expect.toBeNull()),
           date: expect.any(String),
           __v: 0
         });
