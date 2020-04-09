@@ -4,6 +4,7 @@ require('../lib/utils/data-helpers');
 const request = require('supertest');
 const app = require('../lib/app');
 const User = require('../lib/models/User');
+// const { getUser } = require('../db/data-helpers');
 
 describe('users routes', () => {
   it('gets all users', async() => {
@@ -32,23 +33,19 @@ describe('users routes', () => {
       });
   });
 
-  it('deletes a user', async() => {
-    const user = await User.create({
-      location: 'Colorado',
-      phoneNumber: '9714092047',
-      firstName: 'Butters'
+  it('deletes a user by phone number', async() => {
+    const user = await User.create({ 
+      location: 'california', 
+      phoneNumber: '0001234567',
+      firstName: 'corona'
     });
-
     return request(app)
-      .delete(`/api/v1/users/${user._id}`)
+      .post('/api/v1/users/stop')
+      .send({
+        From: '0001234567'
+      })
       .then(res => {
-        expect(res.body).toEqual({
-          location: user.location,
-          phoneNumber: user.phoneNumber,
-          firstName: user.firstName,
-          _id: user.id,
-          __v: 0
-        });
+        expect(res.text).toEqual('<?xml version="1.0" encoding="UTF-8"?><Response><Message>corona, you have been unsubscribed from Pings</Message></Response>');
       });
   });
 });

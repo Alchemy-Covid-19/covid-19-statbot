@@ -7,8 +7,13 @@ const scrape = require('../lib/scrapers/stats-scraper');
 const User = require('../lib/models/User');
 
 describe('stats routes', () => {
+  const mongod = new MongoMemoryServer();
   beforeAll(() => {
     return scrape();
+  });
+
+  afterAll(() => {
+    return mongod.stop();
   });
 
   it('gets daily stats for the United States', () =>{
