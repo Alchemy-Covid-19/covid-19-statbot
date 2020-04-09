@@ -49,4 +49,18 @@ describe('stats routes', () => {
         });
       });
   });
+
+  it('gets daily stats for a specific location in response to a user text', () =>{
+    return request(app)
+      .post(`/api/v1/stats/${something.location}`)
+      .then(res => {
+        expect(res.body).toEqual({
+          _id: expect.any(String),
+          date: expect.any(String),
+          newDeaths: expect.any(Number),
+          newRecovered: expect.any(Number),
+          newCases: expect.any(Number)
+        });
+      });
+  });
 });
