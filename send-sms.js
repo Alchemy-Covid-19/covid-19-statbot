@@ -5,9 +5,9 @@ const authToken = process.env.TWILIO_TOKEN;
 const client = require('twilio')(accountSid, authToken);
 const request = require('superagent');
 
-const getStats = location => request.get(`https://covid-19-stat-dev.herokuapp.com/api/v1/stats/${location}`);
+const getStats = location => request.get(`https://covid-19-stat-production.herokuapp.com/api/v1/stats/${location}`);
 
-const getUsers = () => request.get('https://covid-19-stat-dev.herokuapp.com/api/v1/users');
+const getUsers = () => request.get('https://covid-19-stat-production.herokuapp.com/api/v1/users');
 
 getUsers()
   .then(res => {
