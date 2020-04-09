@@ -26,6 +26,7 @@ describe('scraper routes', () => {
           location: expect.any(String),
           newCases: expect.any(String),
           date: expect.any(String),
+          time: expect.any(String),
           __v: 0
         });
       });
