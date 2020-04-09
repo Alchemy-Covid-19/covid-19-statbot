@@ -6,6 +6,7 @@ const app = require('../lib/app');
 const connect = require('../lib/utils/connect');
 const mongoose = require('mongoose');
 const User = require('../lib/models/User');
+const { getUser } = require('../db/data-helpers');
 
 describe('users routes', () => {
   const mongod = new MongoMemoryServer();
@@ -49,4 +50,20 @@ describe('users routes', () => {
         });
       });
   });
+  it('deletes a user by phone number', async() => {
+    const user = await User.create({ 
+      location: 'california', 
+      phoneNumber: '0001234567',
+      firstName: 'corona'
+    });
+    return request(app)
+      .post('/api/v1/users/stop')
+      .send({
+        From: '0001234567'
+      })
+      .then(res => {
+        expect(res.text).toEqual('<?xml version="1.0" encoding="UTF-8"?><Response><Message>corona, you have been unsubscribed from Pings</Message></Response>');
+      });
+  });
+  
 });
