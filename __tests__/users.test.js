@@ -65,5 +65,4 @@ describe('users routes', () => {
         expect(res.text).toEqual('<?xml version="1.0" encoding="UTF-8"?><Response><Message>corona, you have been unsubscribed from Pings</Message></Response>');
       });
   });
-  
 });
