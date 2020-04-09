@@ -31,4 +31,18 @@ describe('users routes', () => {
         });
       });
   });
+
+  it('deletes a user', async() => {
+    const user = await User.create({
+      location: 'Colorado',
+      phoneNumber: '9714092047',
+      firstName: 'Butters'
+    });
+
+    return request(app)
+      .delete(`/api/v1/users/${user._id}`)
+      .then(res => {
+        expect(res.body).toEqual(user);
+      });
+  });
 });
