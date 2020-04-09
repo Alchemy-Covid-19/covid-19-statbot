@@ -64,6 +64,7 @@ describe('users routes', () => {
           firstName: 'Hannah',
           __v: 0
         });
+        expect(res.text).toEqual('<?xml version="1.0" encoding="UTF-8"?><Response><Message>Hannah, you are now signed up to receive pings!</Message></Response>');
       });
   });
 });
