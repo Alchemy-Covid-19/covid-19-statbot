@@ -3,11 +3,7 @@ require('dotenv').config();
 const accountSid = process.env.TWILIO_SID;
 const authToken = process.env.TWILIO_TOKEN;
 const client = require('twilio')(accountSid, authToken);
-const request = require('superagent');
-
-const getStats = location => request.get(`https://covid-19-stat-dev.herokuapp.com/api/v1/stats/${location}`);
-
-const getUsers = () => request.get('https://covid-19-stat-dev.herokuapp.com/api/v1/users');
+const { getStats, getUsers } = require('./lib/utils');
 
 getUsers()
   .then(res => {
