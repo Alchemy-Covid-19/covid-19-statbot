@@ -23,9 +23,9 @@ describe('stats routes', () => {
         expect(res.body[0]).toEqual({
           _id: expect.any(String),
           date: expect.any(String),
-          newDeaths: expect.any(Number),
-          newRecovered: expect.any(Number),
-          newCases: expect.any(Number)
+          newDeaths: expect.any(String),
+          newRecovered: expect.any(String),
+          newCases: expect.any(String)
         });
       });
   });
@@ -43,9 +43,9 @@ describe('stats routes', () => {
         expect(res.body[0]).toEqual({
           _id: expect.any(String),
           date: expect.any(String),
-          newDeaths: expect.any(Number),
-          newRecovered: expect.any(Number),
-          newCases: expect.any(Number)
+          newDeaths: expect.any(String),
+          newRecovered: expect.any(String),
+          newCases: expect.any(String)
         });
       });
   });

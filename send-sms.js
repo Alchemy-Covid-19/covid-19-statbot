@@ -5,10 +5,9 @@ const authToken = process.env.TWILIO_TOKEN;
 const client = require('twilio')(accountSid, authToken);
 const request = require('superagent');
 
-// change to heroku url
-const getStats = (location) => request.get(`http://localhost:7890/api/v1/stats/${location}`);
+const getStats = location => request.get(`https://covid-19-stat-dev.herokuapp.com/api/v1/stats/${location}`);
 
-const getUsers = () => request.get('http://localhost:7890/api/v1/users');
+const getUsers = () => request.get('https://covid-19-stat-dev.herokuapp.com/api/v1/users');
 
 getUsers()
   .then(res => {
@@ -18,7 +17,7 @@ getUsers()
           return client.messages
             .create({
               body: `
-              Daily stats for ${user.location} as of 4:30 p.m. on ${res.body[0].date}\nNew Cases: ${res.body[0].newCases}\nNew Deaths: ${res.body[0].newDeaths}\nNew Recovered: ${res.body[0].newRecovered}`,
+              Daily stats for ${user.location} as of 4:30 pm PST today:\nNew Cases: ${res.body[0].newCases}\nNew Deaths: ${res.body[0].newDeaths}\nNew Recovered: ${res.body[0].newRecovered}`,
               from: '+13094080627',
               to: `+1${user.phoneNumber}`
             });
@@ -26,8 +25,3 @@ getUsers()
         .then(message => console.log(message.sid));
     });
   });
-
-
-//create GET route for stats
-//use superagent to hit GET route to pull data from mongo
-//pass pulled mongo data into body of created message (line 9)
