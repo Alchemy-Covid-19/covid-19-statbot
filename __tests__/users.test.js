@@ -42,7 +42,13 @@ describe('users routes', () => {
     return request(app)
       .delete(`/api/v1/users/${user._id}`)
       .then(res => {
-        expect(res.body).toEqual(user);
+        expect(res.body).toEqual({
+          location: user.location,
+          phoneNumber: user.phoneNumber,
+          firstName: user.firstName,
+          _id: user.id,
+          __v: 0
+        });
       });
   });
 });
