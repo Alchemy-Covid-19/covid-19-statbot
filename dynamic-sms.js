@@ -24,7 +24,7 @@ app.post('/', (req, res) => {
         .create({
           body: `New Cases: ${res.body[0].newCases} \n New Deaths: ${res.body[0].newDeaths}
         \n New Recovered: ${res.body[0].newRecovered}`,
-          from: '+13094080627',
+          from: '+12017338240',
           to: '+16087124895'
         });
     });
