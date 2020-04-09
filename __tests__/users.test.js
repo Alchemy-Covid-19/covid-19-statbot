@@ -1,29 +1,11 @@
 require('dotenv').config();
+require('../lib/utils/data-helpers');
 
-const { MongoMemoryServer } = require('mongodb-memory-server');
 const request = require('supertest');
 const app = require('../lib/app');
-const connect = require('../lib/utils/connect');
-const mongoose = require('mongoose');
 const User = require('../lib/models/User');
 
 describe('users routes', () => {
-  const mongod = new MongoMemoryServer();
-  beforeAll(() => {
-    return mongod.getUri()
-      .then(uri => {
-        return connect(uri);
-      });
-  });
-
-  afterAll(() => {
-    return mongoose.connection.close();
-  });
-  
-  afterAll(() => {
-    return mongod.stop();
-  });
-
   it('gets all users', async() => {
     const users = await User.create([{
       location: 'Oregon',
