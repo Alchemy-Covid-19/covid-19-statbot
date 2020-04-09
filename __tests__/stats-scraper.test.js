@@ -1,6 +1,5 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
-
 const connect = require('../lib/utils/connect');
 const scraper = require('../lib/scrapers/stats-scraper');
 
@@ -24,10 +23,6 @@ expect.extend({
 describe('scraper routes', () => {
   beforeAll(() => {
     connect();
-  });
-
-  beforeEach(() => {
-    return mongoose.connection.dropDatabase();
   });
 
   afterAll(() => {
