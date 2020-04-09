@@ -11,7 +11,8 @@
   },
   "jest": {
     "testEnvironment": "node",
-    "testTimeout": 10000
+    "testTimeout": 10000,
+    "preset": "jest-puppeteer"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +21,7 @@
     "@types/jest": "^25.1.5",
     "eslint": "^6.8.0",
     "jest": "^25.2.7",
+    "mongodb-memory-server": "^6.5.2",
     "nodemon": "^2.0.2",
     "supertest": "^4.0.2"
   },
@@ -28,6 +30,7 @@
     "cheerio": "^1.0.0-rc.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "jest-puppeteer": "^4.4.0",
     "mongoose": "^5.9.7",
     "puppeteer": "^2.1.1",
     "superagent": "^5.2.2",
