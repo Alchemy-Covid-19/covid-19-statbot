@@ -1,16 +1,26 @@
 require('dotenv').config();
+const { MongoMemoryServer } = require('mongodb-memory-server');
 const mongoose = require('mongoose');
 const connect = require('../lib/utils/connect');
 const scraper = require('../lib/scrapers/stats-scraper');
 
 describe('scraper routes', () => {
+  const mongod = new MongoMemoryServer();
   beforeAll(() => {
-    connect();
+    return mongod.getUri()
+      .then(uri => {
+        return connect(uri);
+      });
   });
 
   afterAll(() => {
     return mongoose.connection.close();
   });
+
+  afterAll(() => {
+    return mongod.stop();
+  });
+  
   it('creates an object from scraped data', () => {
     return scraper()
       .then(res => {
