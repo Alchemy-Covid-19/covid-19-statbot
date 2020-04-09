@@ -48,23 +48,36 @@ describe('users routes', () => {
         expect(res.text).toEqual('<?xml version="1.0" encoding="UTF-8"?><Response><Message>corona, you have been unsubscribed from Pings</Message></Response>');
       });
   });
-  it('creates a user', () => {
-    return request(app)
-      .post('/api/v1/users')
-      .send({
-        location: 'California',
-        phoneNumber: '0001234567',
-        firstName: 'Hannah'
-      })
-      .then(res => {
-        expect(res.body).toEqual({
-          _id: expect.any(String),
-          location: 'California',
-          phoneNumber: '0001234567',
-          firstName: 'Hannah',
-          __v: 0
-        });
-        expect(res.text).toEqual('<?xml version="1.0" encoding="UTF-8"?><Response><Message>Hannah, you are now signed up to receive pings!</Message></Response>');
-      });
-  });
+  // it('creates a user', () => {
+  //   return request(app)
+  //     .post('/api/v1/users')
+  //     .send({
+  //       location: 'California',
+  //       phoneNumber: '0001234567',
+  //       firstName: 'Hannah'
+  //     })
+  //     .then(res => {
+  //       expect(res.body).toEqual({
+  //         _id: expect.any(String),
+  //         location: 'California',
+  //         phoneNumber: '0001234567',
+  //         firstName: 'Hannah',
+  //         __v: 0
+  //       });
+  //     });
+});
+it('texts a user upon creation', () => {
+  return request(app)
+    .post('/api/v1/users')
+    .send({
+      location: 'California',
+      phoneNumber: '0001234567',
+      firstName: 'Hannah'
+    })
+    .then(res => {
+      expect(res.text).toEqual(
+        '<?xml version="1.0" encoding="UTF-8"?><Response><Message>Hannah, you are now signed up to receive pings!</Message></Response>'
+      );
+        
+    });
 });
