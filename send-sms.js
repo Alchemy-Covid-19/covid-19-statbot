@@ -3,6 +3,7 @@ require('dotenv').config();
 const accountSid = process.env.TWILIO_SID;
 const authToken = process.env.TWILIO_TOKEN;
 const client = require('twilio')(accountSid, authToken);
+
 const { getStats, getUsers } = require('./lib/utils');
 
 getUsers()
@@ -14,7 +15,7 @@ getUsers()
             .create({
               body: `
               Daily stats for ${user.location} as of 4:30 pm PST today:\nNew Cases: ${res.body[0].newCases}\nNew Deaths: ${res.body[0].newDeaths}\nNew Recovered: ${res.body[0].newRecovered}`,
-              from: '+12017338240',
+              from: '+13094080627',
               to: `+1${user.phoneNumber}`
             });
         })

@@ -31,7 +31,7 @@ describe('stats routes', () => {
       });
   });
 
-  it('gets stats depending on location', async() => {
+  it.only('gets stats depending on location', async() => {
     const user = await User.create({
       location: 'New York',
       phoneNumber: '5036628396',
@@ -41,9 +41,10 @@ describe('stats routes', () => {
     return request(app)
       .get(`/api/v1/stats/${user.location}`)
       .then(res => {
-        expect(res.body[0]).toEqual({
+        expect(res.body).toEqual({
           _id: expect.any(String),
           date: expect.any(String),
+          time: expect.any(String),
           newDeaths: expect.any(String),
           newRecovered: expect.any(String),
           newCases: expect.any(String)
@@ -58,6 +59,7 @@ describe('stats routes', () => {
   //       expect(res.body).toEqual({
   //         _id: expect.any(String),
   //         date: expect.any(String),
+  //         time: expect.any(String),
   //         newDeaths: expect.any(Number),
   //         newRecovered: expect.any(Number),
   //         newCases: expect.any(Number)
