@@ -7,6 +7,10 @@ const scrape = require('../lib/scrapers/stats-scraper');
 const User = require('../lib/models/User');
 
 describe('stats routes', () => {
+  beforeAll(() => {
+    return scrape();
+  });
+
   it('gets daily stats for the United States', () =>{
     return request(app)
       .get('/api/v1/stats')
