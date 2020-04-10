@@ -29,14 +29,6 @@ app.post('/', (req, res) => {
         });
     });
 
-  if(req.body.Body == 'United States') {
-    twiml.message(messageContent);
-  } else {
-    twiml.message(
-      'No data found for that location.'
-    );
-  }
-
   res.writeHead(200, { 'Content-Type': 'text/xml' });
   res.end(twiml.toString());
 });
