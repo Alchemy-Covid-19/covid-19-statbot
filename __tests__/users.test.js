@@ -33,7 +33,7 @@ describe('users routes', () => {
   });
 
   it('deletes a user by phone number', async() => {
-    const user = await User.create({ 
+    await User.create({ 
       location: 'california', 
       phoneNumber: '0001234567',
       firstName: 'corona'
