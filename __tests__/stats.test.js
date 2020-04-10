@@ -25,7 +25,7 @@ describe('stats routes', () => {
       });
   });
 
-  it.only('gets stats depending on location', async() => {
+  it('gets stats depending on location', async() => {
     const user = await User.create({
       location: 'New York',
       phoneNumber: '5036628396',

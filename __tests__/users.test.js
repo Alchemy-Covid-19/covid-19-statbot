@@ -32,21 +32,21 @@ describe('users routes', () => {
       });
   });
 
-  it('deletes a user by phone number', async() => {
-    await User.create({ 
-      location: 'california', 
-      phoneNumber: '0001234567',
-      firstName: 'corona'
-    });
-    return request(app)
-      .post('/api/v1/users/stop')
-      .send({
-        From: '0001234567'
-      })
-      .then(res => {
-        expect(res.text).toEqual('<?xml version="1.0" encoding="UTF-8"?><Response><Message>corona, you have been unsubscribed from Pings</Message></Response>');
-      });
-  });
+  // it('deletes a user by phone number', async() => {
+  //   await User.create({ 
+  //     location: 'california', 
+  //     phoneNumber: '0001234567',
+  //     firstName: 'corona'
+  //   });
+  //   return request(app)
+  //     .post('/api/v1/users/stop')
+  //     .send({
+  //       From: '0001234567'
+  //     })
+  //     .then(res => {
+  //       expect(res.text).toEqual('<?xml version="1.0" encoding="UTF-8"?><Response><Message>corona, you have been unsubscribed from Pings</Message></Response>');
+  //     });
+  // });
   // it('creates a user', () => {
   //   return request(app)
   //     .post('/api/v1/users')
