@@ -1,20 +1,14 @@
 require('dotenv').config();
 require('../lib/utils/data-helpers');
 
-const { MongoMemoryServer } = require('mongodb-memory-server');
 const request = require('supertest');
 const app = require('../lib/app');
 const scrape = require('../lib/scrapers/stats-scraper');
 const User = require('../lib/models/User');
 
 describe('stats routes', () => {
-  const mongod = new MongoMemoryServer();
   beforeAll(() => {
     return scrape();
-  });
-
-  afterAll(() => {
-    return mongod.stop();
   });
 
   it('gets daily stats for the United States', () =>{

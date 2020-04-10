@@ -1,11 +1,9 @@
 require('dotenv').config();
 require('../lib/utils/data-helpers');
 
-const { MongoMemoryServer } = require('mongodb-memory-server');
 const request = require('supertest');
 const app = require('../lib/app');
 const User = require('../lib/models/User');
-const { getUser } = require('../db/data-helpers');
 
 describe('users routes', () => {
   it('gets all users', async() => {
@@ -33,8 +31,9 @@ describe('users routes', () => {
         });
       });
   });
+
   it('deletes a user by phone number', async() => {
-    const user = await User.create({ 
+    await User.create({ 
       location: 'california', 
       phoneNumber: '0001234567',
       firstName: 'corona'
