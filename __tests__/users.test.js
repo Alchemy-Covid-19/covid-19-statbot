@@ -4,7 +4,6 @@ require('../lib/utils/data-helpers');
 const request = require('supertest');
 const app = require('../lib/app');
 const User = require('../lib/models/User');
-// const { getUser } = require('../db/data-helpers');
 
 describe('users routes', () => {
   it('gets all users', async() => {

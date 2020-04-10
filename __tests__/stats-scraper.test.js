@@ -6,7 +6,6 @@ describe('scraper routes', () => {
   it('creates an object from scraped data', () => {
     return scraper()
       .then(res => {
-        console.log(res[0]);
         expect(res[0].toJSON()).toEqual({
           _id: expect.any(Object),
           totalCases: expect.any(String),
