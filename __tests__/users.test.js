@@ -65,18 +65,18 @@ describe('users routes', () => {
   //       });
   //     });
 });
-it('texts a user upon creation', () => {
-  return request(app)
-    .post('/api/v1/users')
-    .send({
-      location: 'California',
-      phoneNumber: '0001234567',
-      firstName: 'Hannah'
-    })
-    .then(res => {
-      expect(res.text).toEqual(
-        '<?xml version="1.0" encoding="UTF-8"?><Response><Message>Hannah, you are now signed up to receive pings!</Message></Response>'
-      );
+// it('texts a user upon creation', () => {
+//   return request(app)
+//     .post('/api/v1/users')
+//     .send({
+//       location: 'California',
+//       phoneNumber: '0001234567',
+//       firstName: 'Hannah'
+//     })
+//     .then(res => {
+//       expect(res.text).toEqual(
+//         '<?xml version="1.0" encoding="UTF-8"?><Response><Message>Hannah, you are now signed up to receive pings!</Message></Response>'
+//       );
         
-    });
-});
+//     });
+// });
