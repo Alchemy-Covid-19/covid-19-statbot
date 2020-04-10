@@ -13,7 +13,6 @@ const getStatsByLocation = require('./db/data-helpers');
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 
-
 // dummy function to text US data when user texts United States
 app.post('/', (req, res) => {
   const twiml = new MessagingResponse();
