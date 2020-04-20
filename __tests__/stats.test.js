@@ -29,7 +29,7 @@ describe('stats routes', () => {
           newRecovered: expect.any(String),
           newCases: expect.any(String),
           id: expect.any(String),
-          createdAt: expect.any(String)
+          updatedAt: expect.any(String)
         });
       });
   });
