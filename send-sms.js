@@ -4,7 +4,7 @@ require('./lib/utils/connect')();
 const mongoose = require('mongoose');
 const User = require('./lib/models/User');
 const Stats = require('./lib/models/Stats');
-const { dailyMessage } = require('./lib/utils/sms-handler');
+const { dailyMessage } = require('./lib/utils/message-templates');
 
 // hit database directly to get all users and latest stats
 Promise.all([
