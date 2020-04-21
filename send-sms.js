@@ -4,13 +4,9 @@ require('./lib/utils/connect')();
 const mongoose = require('mongoose');
 const User = require('./lib/models/User');
 const Stats = require('./lib/models/Stats');
+const { dailyMessage } = require('./lib/utils/sms-handler');
 
-// create template for message
-const template = (user, stat) =>
-  `
-    Here's your daily update from Social Distance-Ping!\nCOVID-19 stats for ${user.location} as of 4:30 pm PST today:\nNew Cases: ${stat.newCases}\nNew Deaths: ${stat.newDeaths}\nNew Recovered: ${stat.newRecovered}`.trim();
-
-// use models instead of hitting API to find all users and get latest stats
+// hit database directly to get all users and latest stats
 Promise.all([
   User.find(),
   Stats.getLatest()
@@ -18,8 +14,8 @@ Promise.all([
 // send an SMS to each user and wait for all messages to get sent
   .then(([users, stats]) => {
     return Promise.all(users.map(user => {
-      const stat = stats.find(stat => stat.location === user.location);
-      return user.sendSms(template(user, stat));
+      const location = stats.find(stat => stat._id === user.location);
+      return user.sendSms(dailyMessage(user, location.stat));
     }));
   })
   .then(console.log)
@@ -32,6 +28,8 @@ Promise.all([
 // const { getStats, getUsers } = require('./lib/utils/API-services'); 
 // const outgoingSmsHandler = require('./lib/utils/sms-handler');
 
+
+// REFACTORED VERSION THAT HITS API
 // getUsers()
 //   .then(users => {
 //     return Promise.all(users.map(user => Promise.all([user, getStats(user.location)])));
@@ -41,10 +39,7 @@ Promise.all([
 //   })));
 
 
-
-
-
-
+// OUR ORIGINAL FUNCTION
 // getUsers()
 //   .then(res => {
 //     return res.body.forEach(user => {
