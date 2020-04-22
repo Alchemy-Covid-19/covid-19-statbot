@@ -29,7 +29,7 @@ Promise.all([
 // const outgoingSmsHandler = require('./lib/utils/sms-handler');
 
 
-// REFACTORED VERSION THAT HITS API
+// REFACTORED VERSION THAT DOESN'T HIT API
 // getUsers()
 //   .then(users => {
 //     return Promise.all(users.map(user => Promise.all([user, getStats(user.location)])));
