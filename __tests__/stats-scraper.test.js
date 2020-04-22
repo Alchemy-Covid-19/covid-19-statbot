@@ -16,8 +16,8 @@ describe('scraper routes', () => {
           fatalityRate: expect.any(String),
           location: expect.any(String),
           newCases: expect.any(String),
-          date: expect.any(String),
-          time: expect.any(String),
+          createdAt: expect.any(Date),
+          updatedAt: expect.any(Date),
           __v: 0
         });
       });

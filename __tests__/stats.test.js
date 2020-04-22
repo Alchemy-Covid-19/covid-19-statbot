@@ -11,20 +11,6 @@ describe('stats routes', () => {
     return scrape();
   });
 
-  it('gets daily stats for the United States', () =>{
-    return request(app)
-      .get('/api/v1/stats')
-      .then(res => {
-        expect(res.body[0]).toEqual({
-          _id: expect.any(String),
-          date: expect.any(String),
-          newDeaths: expect.any(String),
-          newRecovered: expect.any(String),
-          newCases: expect.any(String)
-        });
-      });
-  });
-
   it('gets stats depending on location', async() => {
     const user = await User.create({
       location: 'New York',
@@ -41,7 +27,9 @@ describe('stats routes', () => {
           time: expect.any(String),
           newDeaths: expect.any(String),
           newRecovered: expect.any(String),
-          newCases: expect.any(String)
+          newCases: expect.any(String),
+          id: expect.any(String),
+          updatedAt: expect.any(String)
         });
       });
   });
