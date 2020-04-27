@@ -26,7 +26,7 @@ describe('stats routes', () => {
           date: expect.any(String),
           time: expect.any(String),
           newDeaths: expect.any(String),
-          newRecovered: expect.any(String),
+          totalTests: expect.any(String),
           newCases: expect.any(String),
           id: expect.any(String),
           updatedAt: expect.any(String)
